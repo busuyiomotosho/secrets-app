@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const User = require('./models/User');
+const Auth = require('./controllers/auth');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 const app = express();
@@ -83,25 +84,7 @@ app.get('/auth/google/secrets',
         res.redirect("/secrets");
 });
 
-app.get('/secrets', (req, res) => {
-    if (req.isAuthenticated()) {
-        // View secrets according to the current user
-        // const userId = req.user.id;
-        // User.findById(userId).then(foundUser => {
-        //     const userSecrets = foundUser.secrets;
-        // res.render('secrets', { userSecrets: userSecrets });
-
-        // View all secrets by all users
-        User.find({ secrets: { $ne: null } }).then(foundUsers => {
-          res.render("secrets", { usersWithSecrets: foundUsers });
-    }).catch(err => {
-        console.log(err);
-    });
-    } else {
-        res.redirect('/login');
-    }
-
-});
+app.get('/secrets', Auth.isAuthenticated);
 
 app.route('/submit')
     
@@ -131,52 +114,16 @@ app.route('/login')
     .get((req, res) => {
         res.render('login');
     })
-    .post((req, res) => {
-        const { fullName, username, password } = req.body;
-        const user = new User({
-            username: username,
-            password: password
-        });
-        req.login(user, (err => {
-            if (err) {
-                console.error();
-            } else {
-                passport.authenticate("local")(req, res, () => {
-                    res.redirect("/secrets");
-                });
-            }
-        }));
-    });
+    .post(Auth.doLogin);
 
-app.get('/logout', (req, res) => {
-    req.logout(err => {
-        if (err) {
-            console.error();
-        } else {
-            res.redirect("/");
-        }
-    });  
-});
+app.get('/logout', Auth.doLogout);
 
 app.route('/register')
 
     .get((req, res) => {
         res.render('register');
     })
-    .post((req, res) => {
-        const { fullName, username, password } = req.body;
-        User.register(
-        { name: fullName, username: username },
-        password
-        ).then(user => {
-        passport.authenticate('local')(req, res, () => {
-            res.redirect('/secrets');
-        });
-        }).catch(err => {
-        console.log(err);
-        res.redirect('/register');
-        });
-    });
+    .post(Auth.doRegister);
 
 app.listen(3000, function() {
   console.log('Server started on port 3000');
