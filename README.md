@@ -24,7 +24,7 @@ Clone the project
 CD into the project directory
 
 ```bash
-  cd my-project
+  cd secrets-app
 ```
 
 Install dependencies
