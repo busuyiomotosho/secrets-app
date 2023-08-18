@@ -3,6 +3,14 @@
 This is a simple Node.js web application with local authentication and OAuth (Google).
 It is a simple application that lets users share their secrets anonymously. It is built with Nodejs, EJS, MongoDb and Express.
 
+<img src="https://github.com/busuyiomotosho/secrets-app/blob/main/screenshots/Secrets%20App%20Home.png" width="100%">
+
+<img src="https://github.com/busuyiomotosho/secrets-app/blob/main/screenshots/Secrets%20App%20Login.png" width="100%">
+
+<img src="https://github.com/busuyiomotosho/secrets-app/blob/main/screenshots/Secrets%20App%20Register.png" width="100%">
+
+<img src="https://github.com/busuyiomotosho/secrets-app/blob/main/screenshots/Secrets%20App%20Main.png" width="100%">
+
 ## Tech Stack:
 
 ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
