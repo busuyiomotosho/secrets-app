@@ -11,6 +11,8 @@ It is a simple application that lets users share their secrets anonymously. It i
 
 <img src="https://github.com/busuyiomotosho/secrets-app/blob/main/screenshots/Secrets%20App%20Main.png" width="100%">
 
+<img src="https://github.com/busuyiomotosho/secrets-app/blob/main/screenshots/Secrets%20App%20Submit%20Secrets.png" width="100%">
+
 ## Tech Stack:
 
 ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
